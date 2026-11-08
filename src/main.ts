@@ -12,7 +12,7 @@ async function run(): Promise<void> {
     const pmVersionMajor: string = core.getInput('pm-version-major')
 
     //TODO: MacOS and Windows support
-    const binaryTarballUrl = `https://github.com/axolotl-pm/PHP-Binaries/releases/download/pm${pmVersionMajor}-php-${phpVersion}-latest/PHP-${phpVersion}-Linux-x86_64-PM${pmVersionMajor}.tar.gz`
+    const binaryTarballUrl = `https://github.com/Bedrock-Phanatics/PHP-Binaries/releases/download/pm${pmVersionMajor}-php-${phpVersion}-latest/PHP-${phpVersion}-Linux-x86_64-PM${pmVersionMajor}.tar.gz`
     core.info(`Downloading PHP binary: ${binaryTarballUrl}`)
     const binaryTarballPath: string = await toolCache.downloadTool(
       binaryTarballUrl
