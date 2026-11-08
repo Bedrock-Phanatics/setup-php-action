@@ -1,18 +1,41 @@
+
+<h1  align="center">Setup PHP Action</h1>
+
 <p align="center">
-  <a href="https://github.com/axolotl-pm/setup-php-action/actions"><img alt="setup-php-action status" src="https://github.com/axolotl-pm/setup-php-action/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/Bedrock-Phanatics/setup-php-action/actions">
+    <img alt="Build Status" src="https://github.com/Bedrock-Phanatics/setup-php-action/workflows/build-test/badge.svg">
+  </a>
 </p>
 
-# setup-php-action
+A GitHub Action for setting up PHP and Composer in your CI workflows.
 
-This action installs PHP and Composer for [Axolotl-PM](https://github.com/axolotl-pm/PocketMine-MP) from [axolotl-pm/PHP-Binaries releases](https://github.com/axolotl-pm/PHP-Binaries/releases).
+Built primarily for [Quark](https://github.com/Bedrock-Phanatics/Quark), this action downloads and installs prebuilt PHP binaries from [Bedrock-Phanatics/PHP-Binaries](https://github.com/Bedrock-Phanatics/PHP-Binaries/releases), making it easy to get a consistent PHP environment up and running.
 
-This is used internally for Axolotl-PM's own CIs, and can also be used by plugins using GitHub Actions.
+While designed for Quark's own CI workflows, it can also be used by third-party plugins and projects running on GitHub Actions.
 
-Currently only supported on Linux, but MacOS and Windows support is planned for the future.
+## Platform Support
+
+- **Linux:** Supported
+- **macOS:** Planned
+- **Windows:** Planned
 
 ## Inputs
-| Name | Required | Possible values | Description |
-|:-----|:--------:|:----------------|:------------|
-| `php-version` | YES | Any version available in [`axolotl-pm/PHP-Binaries`](https://github.com/axolotl-pm/PHP-Binaries) (currently `8.1` through `8.5`) | PHP version, must be a full `major.minor.patch` |
-| `install-path` | YES | Folder path | Path to install the binary into (e.g. `./bin`) |
-| `pm-version-major` | NO | `5` | Major version of [Axolotl-PM](https://github.com/axolotl-pm/PocketMine-MP) to build extensions for |
+
+| Input | Required | Description |
+|:------|:--------:|:------------|
+| `php-version` | Yes | PHP version to install. Must be a full `major.minor.patch` version (e.g. `8.3.12`). Must be available in [PHP-Binaries](https://github.com/Bedrock-Phanatics/PHP-Binaries) (currently PHP `8.1` through `8.5`). |
+| `install-path` | Yes | Directory where PHP and Composer will be installed (e.g. `./bin`). |
+| `version-major` | No | Major version of [Quark](https://github.com/Bedrock-Phanatics/Quark) to build extensions for. Currently supports `5`. |
+
+## Usage
+
+Add the action to your GitHub Actions workflow:
+
+```yaml
+- name: Setup PHP
+  uses: Bedrock-Phanatics/setup-php-action@main
+  with:
+    php-version: '8.4'
+    install-path: './bin'
+    version-major: '5'
+```
